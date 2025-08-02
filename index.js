@@ -25,6 +25,9 @@ app.use(express.json());                          {/*to parse incoming JSON requ
 app.get('/api/test', (req, res) => {
   res.json({ message: 'CORS is working!' });
 });
+app.get('/', (req, res) => {
+  res.send('Welcome to the Home Page');
+});
 
 app.listen(3000, () => {                          {/* calling listen function/method */}
     console.log('Server is running on port 3000');
