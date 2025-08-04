@@ -40,7 +40,7 @@ const {email, password} = req.body;
         const isPasswordCorrect = bcryptjs.compareSync(password, user.password);  {/*compareSync is used to compare the password with hashed password*/}
         if(!isPasswordCorrect) return next(errorHandler(400, 'Wrong credentials!'));  {/*if password is incorrect, return error*/}
 
-        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);  {/*signing the token with user id and secret key*/}
+        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET,{ expiresIn: '1h' });  {/*signing the token with user id and secret key*/}
         
         /*Remove password from user object before sending*/
         const { password: pass, ...rest } = user._doc;
